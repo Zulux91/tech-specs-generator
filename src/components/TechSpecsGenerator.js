@@ -8,8 +8,8 @@ const TechSpecsGenerator = () => {
       id: 1,
       category: "CPU / GPU",
       value: "Unisoc T820 / Mali G57",
-      categoryColor: "#ef4444",
-      categoryTextColor: "#000000",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#ef4444",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -20,8 +20,8 @@ const TechSpecsGenerator = () => {
       id: 2,
       category: "RAM",
       value: "LPDDR4X 8GB",
-      categoryColor: "#ef4444",
-      categoryTextColor: "#000000",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#ef4444",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -31,9 +31,9 @@ const TechSpecsGenerator = () => {
     {
       id: 3,
       category: "Almacenamiento",
-      value: "128GB + microSD slot",
-      categoryColor: "#ef4444",
-      categoryTextColor: "#000000",
+      value: "128GB + microSD",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#ef4444",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -44,8 +44,8 @@ const TechSpecsGenerator = () => {
       id: 4,
       category: "Pantalla",
       value: '4.7" @ 1280x960 (4:3) 120Hz',
-      categoryColor: "#eab308",
-      categoryTextColor: "#000000",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#eab308",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -55,9 +55,9 @@ const TechSpecsGenerator = () => {
     {
       id: 5,
       category: "Batería",
-      value: "5000mAh (about six hours)",
-      categoryColor: "#eab308",
-      categoryTextColor: "#000000",
+      value: "5000mAh (unas 6 horas)",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#eab308",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -67,9 +67,9 @@ const TechSpecsGenerator = () => {
     {
       id: 6,
       category: "Peso",
-      value: "380g (13.4 ounces)",
-      categoryColor: "#eab308",
-      categoryTextColor: "#000000",
+      value: "380g (13.4 onzas)",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#eab308",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -80,8 +80,8 @@ const TechSpecsGenerator = () => {
       id: 7,
       category: "Conectividad",
       value: "WiFi 2.4 o 5GHz / BT 5.0",
-      categoryColor: "#22c55e",
-      categoryTextColor: "#000000",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#22c55e",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -92,8 +92,8 @@ const TechSpecsGenerator = () => {
       id: 8,
       category: "Sistema Operativo",
       value: "Android 13",
-      categoryColor: "#22c55e",
-      categoryTextColor: "#000000",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#22c55e",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -104,8 +104,8 @@ const TechSpecsGenerator = () => {
       id: 9,
       category: "Otros",
       value: "Sticks capacitivos / stereo",
-      categoryColor: "#22c55e",
-      categoryTextColor: "#000000",
+      categoryColor: "#1E2137",
+      categoryTextColor: "#22c55e",
       categoryFont: "sans-serif",
       categoryFontSize: 12,
       categoryFontWeight: "600",
@@ -220,7 +220,7 @@ const TechSpecsGenerator = () => {
           </div>
 
           <div
-            className="rounded-lg px-4 pt-6 pb-4 border-2 transition-all duration-200 hover:border-gray-400 min-h-[80px] flex items-center"
+            className="rounded-lg px-4 pt-4 pb-1 border-2 transition-all duration-200 hover:border-gray-400 min-h-[50px] flex items-center"
             style={{
               backgroundColor: "#1E2137",
               borderColor: "#4b5563",
@@ -512,9 +512,9 @@ const TechSpecsGenerator = () => {
   };
 
   return (
-    <div className="min-h-screen p-8" style={{ backgroundColor: "#1E2137" }}>
+    <div className="flex min-h-screen p-8" style={{ backgroundColor: "#1E2137" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+        <div className="relative justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-white">
             Generador de Infográficos de Especificaciones
           </h1>
@@ -536,7 +536,7 @@ const TechSpecsGenerator = () => {
           </div>
         </div>
 
-        <div id="spec-card" className="grid grid-cols-3 gap-4">
+        <div id="spec-card" className="inline-grid grid-cols-3 gap-x-6 gap-y-4 auto-rows-min">
           {fields.map((field) => (
             <SpecCard
               key={field.id}
