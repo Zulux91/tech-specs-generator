@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, Trash2, Download, Eye, Edit3 } from "lucide-react";
 import { toPng } from 'html-to-image';
 
 const TechSpecsGenerator = () => {
-  const [fields, setFields] = useState([
+  // Función para cargar datos desde localStorage
+  const loadFromLocalStorage = () => {
+    try {
+      const savedData = localStorage.getItem('techSpecsData');
+      if (savedData) {
+        const parsed = JSON.parse(savedData);
+        return parsed.fields || getDefaultFields();
+      }
+    } catch (error) {
+      console.error('Error al cargar datos desde localStorage:', error);
+    }
+    return getDefaultFields();
+  };
+
+  // Función para obtener campos por defecto
+  const getDefaultFields = () => [
     {
       id: 1,
       category: "CPU / GPU",
-      value: "Unisoc T820 / Mali G57",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#ef4444",
       categoryFont: "sans-serif",
@@ -19,7 +34,7 @@ const TechSpecsGenerator = () => {
     {
       id: 2,
       category: "RAM",
-      value: "LPDDR4X 8GB",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#ef4444",
       categoryFont: "sans-serif",
@@ -31,7 +46,7 @@ const TechSpecsGenerator = () => {
     {
       id: 3,
       category: "Almacenamiento",
-      value: "128GB + microSD",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#ef4444",
       categoryFont: "sans-serif",
@@ -43,7 +58,7 @@ const TechSpecsGenerator = () => {
     {
       id: 4,
       category: "Pantalla",
-      value: '4.7" @ 1280x960 (4:3) 120Hz',
+      value: 'Lorem ipsum dolor sit amet',
       categoryColor: "#1E2137",
       categoryTextColor: "#eab308",
       categoryFont: "sans-serif",
@@ -55,7 +70,7 @@ const TechSpecsGenerator = () => {
     {
       id: 5,
       category: "Batería",
-      value: "5000mAh (unas 6 horas)",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#eab308",
       categoryFont: "sans-serif",
@@ -67,7 +82,7 @@ const TechSpecsGenerator = () => {
     {
       id: 6,
       category: "Peso",
-      value: "380g (13.4 onzas)",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#eab308",
       categoryFont: "sans-serif",
@@ -79,7 +94,7 @@ const TechSpecsGenerator = () => {
     {
       id: 7,
       category: "Conectividad",
-      value: "WiFi 2.4 o 5GHz / BT 5.0",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#22c55e",
       categoryFont: "sans-serif",
@@ -91,7 +106,7 @@ const TechSpecsGenerator = () => {
     {
       id: 8,
       category: "Sistema Operativo",
-      value: "Android 13",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#22c55e",
       categoryFont: "sans-serif",
@@ -103,7 +118,7 @@ const TechSpecsGenerator = () => {
     {
       id: 9,
       category: "Otros",
-      value: "Sticks capacitivos / stereo",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#1E2137",
       categoryTextColor: "#22c55e",
       categoryFont: "sans-serif",
@@ -112,16 +127,35 @@ const TechSpecsGenerator = () => {
       valueColor: "#ffffff",
       valueFont: "sans-serif",
     }
-  ]);
+  ];
 
+  const [fields, setFields] = useState(loadFromLocalStorage);
   const [editingFieldId, setEditingFieldId] = useState(null);
   const [isExporting, setIsExporting] = useState(false);
+
+  // Función para guardar en localStorage
+  const saveToLocalStorage = (fieldsData) => {
+    try {
+      const dataToSave = {
+        fields: fieldsData,
+        lastUpdated: new Date().toISOString()
+      };
+      localStorage.setItem('techSpecsData', JSON.stringify(dataToSave));
+    } catch (error) {
+      console.error('Error al guardar en localStorage:', error);
+    }
+  };
+
+  // Effect para guardar automáticamente cuando cambian los fields
+  useEffect(() => {
+    saveToLocalStorage(fields);
+  }, [fields]);
 
   const addField = () => {
     const newField = {
       id: Date.now(),
       category: "Nueva categoría",
-      value: "Nuevo valor",
+      value: "Lorem ipsum dolor sit amet",
       categoryColor: "#6b7280",
       categoryTextColor: "#000000",
       categoryFont: "sans-serif",
@@ -142,6 +176,14 @@ const TechSpecsGenerator = () => {
     setFields((prev) =>
       prev.map((field) => (field.id === id ? { ...field, ...updates } : field))
     );
+  };
+
+  // Función para resetear todos los datos
+  const resetAllData = () => {
+    if (window.confirm('¿Estás seguro de que quieres resetear todos los datos? Esta acción no se puede deshacer.')) {
+      localStorage.removeItem('techSpecsData');
+      setFields(getDefaultFields());
+    }
   };
 
   const exportAsImage = async () => {
@@ -533,7 +575,20 @@ const TechSpecsGenerator = () => {
               <Download size={20} />
               Exportar
             </button>
+            <button
+              onClick={resetAllData}
+              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+            >
+              <Trash2 size={20} />
+              Resetear Todo
+            </button>
           </div>
+        </div>
+
+        <div className="mb-4">
+          <p className="text-gray-400 text-sm">
+            ✅ Todos los cambios se guardan automáticamente en tu navegador
+          </p>
         </div>
 
         <div id="spec-card" className="inline-grid grid-cols-3 gap-x-6 gap-y-4 auto-rows-min">
@@ -560,6 +615,15 @@ const TechSpecsGenerator = () => {
           />
         )}
       </div>
+
+      <footer className="fixed bottom-0 left-0 w-full text-center text-sm text-white/60 bg-[#0f0c29] py-2 border-t border-white/10">
+        Made by <span className="font-semibold">Zulux91</span> with 💗 using <span className="inline-flex items-center gap-1 text-cyan-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3" fill="currentColor" className="w-4 h-4">
+            <path d="M666.3 296.5c0-40.3-31.3-74.1-71.3-78.7 5.1-12.4 7.8-26 7.8-40.2 0-60.3-49-109.3-109.3-109.3-28.3 0-54 10.8-73.4 28.5-19.4-17.7-45.1-28.5-73.4-28.5-60.3 0-109.3 49-109.3 109.3 0 14.2 2.7 27.8 7.8 40.2-40 4.6-71.3 38.4-71.3 78.7 0 43.8 35.5 79.3 79.3 79.3h44.8c19.8 0 38.1-8.7 51.4-22.6 13.3 13.9 31.6 22.6 51.4 22.6s38.1-8.7 51.4-22.6c13.3 13.9 31.6 22.6 51.4 22.6h44.8c43.7 0 79.3-35.5 79.3-79.3z"/>
+          </svg> React
+        </span>
+      </footer>
+      <div style={{ height: "20px" }}></div>
     </div>
   );
 };
