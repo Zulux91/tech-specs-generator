@@ -585,12 +585,6 @@ const TechSpecsGenerator = () => {
           </div>
         </div>
 
-        <div className="mb-4">
-          <p className="text-gray-400 text-sm">
-            ✅ Todos los cambios se guardan automáticamente en tu navegador
-          </p>
-        </div>
-
         <div id="spec-card" className="inline-grid grid-cols-3 gap-x-6 gap-y-4 auto-rows-min">
           {fields.map((field) => (
             <SpecCard

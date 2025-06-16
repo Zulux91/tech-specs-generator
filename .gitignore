@@ -33,3 +33,7 @@ Thumbs.db
 # Dependencias lockfile: si usas yarn o npm, sube solo uno!
 # package-lock.json  # (sube este si usas npm)
 # yarn.lock          # (sube este si usas yarn)
+
+#Misc
+7z
+zip
