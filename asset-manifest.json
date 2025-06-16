@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tech-specs-generator/static/css/main.828fbf1b.css",
-    "main.js": "/tech-specs-generator/static/js/main.53af097b.js",
+    "main.css": "/tech-specs-generator/static/css/main.b0a4bbc5.css",
+    "main.js": "/tech-specs-generator/static/js/main.259892c8.js",
     "index.html": "/tech-specs-generator/index.html",
-    "main.828fbf1b.css.map": "/tech-specs-generator/static/css/main.828fbf1b.css.map",
-    "main.53af097b.js.map": "/tech-specs-generator/static/js/main.53af097b.js.map"
+    "main.b0a4bbc5.css.map": "/tech-specs-generator/static/css/main.b0a4bbc5.css.map",
+    "main.259892c8.js.map": "/tech-specs-generator/static/js/main.259892c8.js.map"
   },
   "entrypoints": [
-    "static/css/main.828fbf1b.css",
-    "static/js/main.53af097b.js"
+    "static/css/main.b0a4bbc5.css",
+    "static/js/main.259892c8.js"
   ]
 }
